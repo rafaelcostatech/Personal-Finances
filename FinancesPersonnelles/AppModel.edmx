@@ -10,10 +10,17 @@
             <PropertyRef Name="AccountId" />
           </Key>
           <Property Name="Type" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DateTime" Type="date" Nullable="false" />
           <Property Name="Balance" Type="float" />
           <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Desc" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -23,9 +30,26 @@
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Accounts__Accoun__4CA06362">
+          <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MainDBModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountType" EntityType="Self.AccountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Accounts__Accoun__4CA06362" Association="Self.FK__Accounts__Accoun__4CA06362">
+            <End Role="AccountType" EntitySet="AccountType" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -37,9 +61,12 @@
           </Key>
           <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Balance" Type="Double" />
+          <NavigationProperty Name="AccountType" Relationship="MainDBModel.FK__Accounts__Descri__4AB81AF0" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="AccountType1" Relationship="MainDBModel.FK__Accounts__Descri__4BAC3F29" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="AccountType2" Relationship="MainDBModel.FK__Accounts__Accoun__4CA06362" FromRole="Account" ToRole="AccountType" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -52,7 +79,66 @@
         <EntityContainer Name="MainDBEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="AccountTypes" EntityType="MainDBModel.AccountType" />
+          <AssociationSet Name="FK__Accounts__Descri__4AB81AF0" Association="MainDBModel.FK__Accounts__Descri__4AB81AF0">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Accounts__Descri__4BAC3F29" Association="MainDBModel.FK__Accounts__Descri__4BAC3F29">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Accounts__Accoun__4CA06362" Association="MainDBModel.FK__Accounts__Accoun__4CA06362">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="MainDBModel.FK__Accounts__Descri__4AB81AF0" FromRole="AccountType" ToRole="Account" />
+          <NavigationProperty Name="Accounts1" Relationship="MainDBModel.FK__Accounts__Descri__4BAC3F29" FromRole="AccountType" ToRole="Account" />
+          <NavigationProperty Name="Account" Relationship="MainDBModel.FK__Accounts__Accoun__4CA06362" FromRole="AccountType" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK__Accounts__Descri__4AB81AF0">
+          <End Type="MainDBModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="MainDBModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Description" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Accounts__Descri__4BAC3F29">
+          <End Type="MainDBModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="MainDBModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Description" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Accounts__Accoun__4CA06362">
+          <End Type="MainDBModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="MainDBModel.Account" Role="Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -79,6 +165,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="AccountTypes">
+            <EntityTypeMapping TypeName="MainDBModel.AccountType">
+              <MappingFragment StoreEntitySet="AccountType">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -6,7 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="27d2efe98444458384ed5c83def07810" Name="Diagram1">
         <EntityTypeShape EntityType="MainDBModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Group" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Group" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.AccountType" Width="1.5" PointX="3.75" PointY="1.125" />
+        <AssociationConnector Association="MainDBModel.FK__Accounts__Descri__4AB81AF0" />
+        <AssociationConnector Association="MainDBModel.FK__Accounts__Descri__4BAC3F29" />
+        <AssociationConnector Association="MainDBModel.FK__Accounts__Accoun__4CA06362" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
