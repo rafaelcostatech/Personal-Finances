@@ -7,8 +7,14 @@
       <Diagram DiagramId="2bf17637dfb2421aae6457798db3b7a6" Name="Diagram1">
         <EntityTypeShape EntityType="MainDBModel.Account" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDBModel.AccountType" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Group" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Group" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="MainDBModel.FK__Accounts__Accoun__4CA06362" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MainDBModel.Budget" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="MainDBModel.GroupLevel" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="MainDBModel.Movement" Width="1.5" PointX="3" PointY="4.625" />
+        <AssociationConnector Association="MainDBModel.FK__Budgets__GroupId__74AE54BC" />
+        <AssociationConnector Association="MainDBModel.FK__Groups__Level__75A278F5" />
+        <AssociationConnector Association="MainDBModel.FK__Movements__Group__71D1E811" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

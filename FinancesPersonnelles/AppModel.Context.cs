@@ -28,5 +28,8 @@ namespace FinancesPersonnelles
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Budget> Budgets { get; set; }
+        public virtual DbSet<GroupLevel> GroupLevels { get; set; }
+        public virtual DbSet<Movement> Movements { get; set; }
     }
 }

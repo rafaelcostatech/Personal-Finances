@@ -102,7 +102,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Budget.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Group.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupLevel.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201709122025444_Reset.cs" />
@@ -110,6 +116,9 @@
       <DependentUpon>201709122025444_Reset.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Movement.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Movements\MovementsSetup.cs">
       <SubType>Form</SubType>
     </Compile>
