@@ -12,12 +12,12 @@ namespace FinancesPersonnelles.Accounts
 {
     public partial class AccountsSetup : Form
     {
-        private MainDBEntities2 db;
+        private MainDBEntities db;
 
         public AccountsSetup()
         {
             InitializeComponent();
-            db = new MainDBEntities2();
+            db = new MainDBEntities();
             BindDGView(db.Accounts.ToList());
         }
 
@@ -32,7 +32,7 @@ namespace FinancesPersonnelles.Accounts
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 var Account = new Account() { Type = type, Description = desc, DateTime = startDate, Balance = balance };
@@ -58,7 +58,7 @@ namespace FinancesPersonnelles.Accounts
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 Account NewAccount = db.Accounts.Find(Id);
@@ -87,7 +87,7 @@ namespace FinancesPersonnelles.Accounts
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 Account AccountToDelete = db.Accounts.Find(Id);

@@ -12,12 +12,12 @@ namespace FinancesPersonnelles
 {
     public partial class GroupSetup : Form
     {
-        private MainDBEntities2 db;
+        private MainDBEntities db;
 
         public GroupSetup()
         {
             InitializeComponent();
-            db = new MainDBEntities2();
+            db = new MainDBEntities();
             BindDGView(db.Groups.ToList());
         }
 
@@ -27,7 +27,7 @@ namespace FinancesPersonnelles
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 var MovementGroup = new Group() { Type = type, Description = desc };
@@ -53,7 +53,7 @@ namespace FinancesPersonnelles
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 Group NewGroup = db.Groups.Find(Id);
@@ -80,7 +80,7 @@ namespace FinancesPersonnelles
             {
                 if (db == null)
                 {
-                    db = new MainDBEntities2();
+                    db = new MainDBEntities();
                 }
 
                 Group GroupToDelete = db.Groups.Find(Id);

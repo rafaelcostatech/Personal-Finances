@@ -75,11 +75,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\AccountsSetup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounts\AccountsSetup.Designer.cs">
       <DependentUpon>AccountsSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountType.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AppModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -95,6 +101,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201709122025444_Reset.cs" />
     <Compile Include="Migrations\201709122025444_Reset.Designer.cs">
@@ -175,7 +184,6 @@
     </EntityDeploy>
     <None Include="AppModel.edmx.diagram">
       <DependentUpon>AppModel.edmx</DependentUpon>
-      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
