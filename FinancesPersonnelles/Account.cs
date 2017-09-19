@@ -14,12 +14,20 @@ namespace FinancesPersonnelles
     
     public partial class Account
     {
-        public int Type { get; set; }
-        public System.DateTime DateTime { get; set; }
-        public Nullable<double> Balance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Account()
+        {
+            this.Movements = new HashSet<Movement>();
+        }
+    
         public int AccountId { get; set; }
+        public int Type { get; set; }
+        public System.DateTime Start_Date { get; set; }
+        public Nullable<double> Balance { get; set; }
         public string Description { get; set; }
     
         public virtual AccountType AccountType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movement> Movements { get; set; }
     }
 }

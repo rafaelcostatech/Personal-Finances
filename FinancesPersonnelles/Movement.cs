@@ -19,7 +19,9 @@ namespace FinancesPersonnelles
         public System.DateTime MovDate { get; set; }
         public double MovValue { get; set; }
         public string MovDescription { get; set; }
+        public int AccountId { get; set; }
     
         public virtual Group Group { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

@@ -19,6 +19,10 @@ namespace FinancesPersonnelles.Accounts
             InitializeComponent();
             db = new MainDBEntities();
             BindDGView(db.Accounts.ToList());
+
+            accountsSetupTypeCBox.ValueMember = "Id";
+            accountsSetupTypeCBox.DisplayMember = "Desc";
+            accountsSetupTypeCBox.DataSource = db.AccountTypes.ToList();
         }
 
         private void AccountsSetup_Load(object sender, EventArgs e)
@@ -35,7 +39,7 @@ namespace FinancesPersonnelles.Accounts
                     db = new MainDBEntities();
                 }
 
-                var Account = new Account() { Type = type, Description = desc, DateTime = startDate, Balance = balance };
+                var Account = new Account() { Type = type, Description = desc, Start_Date = startDate, Balance = balance };
                 db.Accounts.Add(Account);
                 db.SaveChanges();
 
@@ -47,7 +51,7 @@ namespace FinancesPersonnelles.Accounts
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.ToString());
                 return false;
             }
         }
@@ -64,7 +68,7 @@ namespace FinancesPersonnelles.Accounts
                 Account NewAccount = db.Accounts.Find(Id);
                 NewAccount.Type = newType;
                 NewAccount.Description = newDesc;
-                NewAccount.DateTime = newStartDate;
+                NewAccount.Start_Date = newStartDate;
                 NewAccount.Balance = newBalance;
                 db.SaveChanges();
 
@@ -112,34 +116,59 @@ namespace FinancesPersonnelles.Accounts
         {
             accountsSetupGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             accountsSetupGridView.DataSource = AccountsList;
+            accountsSetupGridView.Columns[5].Visible = false;
         }
 
         private void accountsSetupInsertButton_Click(object sender, EventArgs e)
         {
-            if (Save(int.Parse(accountsSetupTypeCBox.SelectedItem.ToString()), 
-                accountsSetupRichText.Text.ToString(), 
-                accountsSetupDateTimePicker.Value, 
-                float.Parse(accountsSetupBalanceTextBox.Text)))
+            if (accountsSetupTypeCBox.SelectedValue != null &&
+                accountsSetupRichText.Text != null &&
+                accountsSetupDateTimePicker.Value != null &&
+                accountsSetupBalanceTextBox.Text != null)
             {
-                accountsSetupTypeCBox.SelectedItem = null;
-                accountsSetupRichText.Text = "";
-                accountsSetupBalanceTextBox.Text = "";
+                if (Save(int.Parse(accountsSetupTypeCBox.SelectedValue.ToString()), 
+                    accountsSetupRichText.Text.ToString(), 
+                    accountsSetupDateTimePicker.Value, 
+                    float.Parse(accountsSetupBalanceTextBox.Text)))
+                {
+                    accountsSetupTypeCBox.SelectedItem = null;
+                    accountsSetupRichText.Text = "";
+                    accountsSetupBalanceTextBox.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("A problem occurred while trying to process the informations. Restart the program and if the problem persists, contact the administrator of the system.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("One or more fields are empty. Review and complete the form");
             }
         }
 
         private void accountsSetupUpdateButton_Click(object sender, EventArgs e)
         {
-            int Id = int.Parse(accountsSetupGridView.SelectedRows[0].Cells[0].Value.ToString());
-            if (Update(Id, int.Parse(accountsSetupTypeCBox.SelectedItem.ToString()), 
-                accountsSetupRichText.Text.ToString(), 
-                accountsSetupDateTimePicker.Value, 
-                float.Parse(accountsSetupBalanceTextBox.Text)))
+            if (accountsSetupTypeCBox.SelectedValue != null &&
+                accountsSetupRichText.Text != null &&
+                accountsSetupDateTimePicker.Value != null &&
+                accountsSetupBalanceTextBox.Text != null)
             {
-                accountsSetupTypeCBox.SelectedItem = null;
-                accountsSetupRichText.Text = "";
-                accountsSetupBalanceTextBox.Text = "";
-                accountsSetupUpdateButton.Enabled = false;
-                accountsSetupExclusionButton.Enabled = false;
+                int Id = int.Parse(accountsSetupGridView.SelectedRows[0].Cells[0].Value.ToString());
+                if (Update(Id, int.Parse(accountsSetupTypeCBox.SelectedItem.ToString()),
+                accountsSetupRichText.Text.ToString(),
+                accountsSetupDateTimePicker.Value,
+                float.Parse(accountsSetupBalanceTextBox.Text)))
+                {
+                    accountsSetupTypeCBox.SelectedItem = null;
+                    accountsSetupRichText.Text = "";
+                    accountsSetupBalanceTextBox.Text = "";
+                    accountsSetupUpdateButton.Enabled = false;
+                    accountsSetupExclusionButton.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("One or more fields are empty. Review and complete the form");
             }
         }
 
@@ -158,12 +187,16 @@ namespace FinancesPersonnelles.Accounts
 
         private void accountsSetupGridView_MouseClick(object sender, MouseEventArgs e)
         {
-            accountsSetupUpdateButton.Enabled = true;
-            accountsSetupExclusionButton.Enabled = true;
-            accountsSetupTypeCBox.Text = accountsSetupGridView.SelectedRows[0].Cells[1].Value.ToString();
-            accountsSetupRichText.Text = accountsSetupGridView.SelectedRows[0].Cells[2].Value.ToString();
-            accountsSetupDateTimePicker.Value = DateTime.Parse(accountsSetupGridView.SelectedRows[0].Cells[3].Value.ToString());
-            accountsSetupBalanceTextBox.Text = accountsSetupGridView.SelectedRows[0].Cells[4].Value.ToString();
+            if (accountsSetupGridView.Rows.Count != 0)
+            {
+                accountsSetupUpdateButton.Enabled = true;
+                accountsSetupExclusionButton.Enabled = true;
+                accountsSetupTypeCBox.Text = accountsSetupGridView.SelectedRows[0].Cells[1].Value.ToString();
+                accountsSetupRichText.Text = accountsSetupGridView.SelectedRows[0].Cells[2].Value.ToString();
+                accountsSetupDateTimePicker.Value = DateTime.Parse(accountsSetupGridView.SelectedRows[0].Cells[3].Value.ToString());
+                accountsSetupBalanceTextBox.Text = accountsSetupGridView.SelectedRows[0].Cells[4].Value.ToString();
+
+            }
         }
 
         private void accountsSetupBalanceTextBox_TextChanged(object sender, EventArgs e)

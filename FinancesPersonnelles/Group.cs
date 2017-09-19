@@ -21,14 +21,12 @@ namespace FinancesPersonnelles
             this.Movements = new HashSet<Movement>();
         }
     
-        public string Type { get; set; }
+        public int Type { get; set; }
         public string Description { get; set; }
         public int GroupId { get; set; }
-        public Nullable<int> Level { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget> Budgets { get; set; }
-        public virtual GroupLevel GroupLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Movement> Movements { get; set; }
     }

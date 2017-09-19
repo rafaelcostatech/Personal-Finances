@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Accounts\AccountsSetup.cs">
       <SubType>Form</SubType>
@@ -85,45 +85,46 @@
       <DependentUpon>AccountsSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="AccountType.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppModel.edmx</DependentUpon>
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Budget.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Group.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="GroupLevel.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
+    <Compile Include="GroupType.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709122025444_Reset.cs" />
-    <Compile Include="Migrations\201709122025444_Reset.Designer.cs">
-      <DependentUpon>201709122025444_Reset.cs</DependentUpon>
+    <Compile Include="MainDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MainDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Movement.cs">
-      <DependentUpon>AppModel.tt</DependentUpon>
+      <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Movements\MovementsSetup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Movements\MovementsSetup.Designer.cs">
       <DependentUpon>MovementsSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecoverPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecoverPassword.Designer.cs">
+      <DependentUpon>RecoverPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Templates\GeneralLayout.cs">
       <SubType>Form</SubType>
@@ -157,6 +158,9 @@
     <Compile Include="Setup.Designer.cs">
       <DependentUpon>Setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accounts\AccountsSetup.resx">
       <DependentUpon>AccountsSetup.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,8 +173,11 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709122025444_Reset.resx">
-      <DependentUpon>201709122025444_Reset.cs</DependentUpon>
+    <EmbeddedResource Include="Movements\MovementsSetup.resx">
+      <DependentUpon>MovementsSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecoverPassword.resx">
+      <DependentUpon>RecoverPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Templates\GeneralLayout.resx">
       <DependentUpon>GeneralLayout.cs</DependentUpon>
@@ -187,12 +194,12 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="AppModel.edmx">
+    <EntityDeploy Include="MainDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AppModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MainDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AppModel.edmx.diagram">
-      <DependentUpon>AppModel.edmx</DependentUpon>
+    <None Include="MainDB.edmx.diagram">
+      <DependentUpon>MainDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -229,16 +236,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppModel.Context.tt">
+    <Content Include="MainDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AppModel.edmx</DependentUpon>
-      <LastGenOutput>AppModel.Context.cs</LastGenOutput>
+      <DependentUpon>MainDB.edmx</DependentUpon>
+      <LastGenOutput>MainDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AppModel.edmx.sql" />
-    <Content Include="AppModel.tt">
+    <Content Include="MainDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AppModel.edmx</DependentUpon>
-      <LastGenOutput>AppModel.cs</LastGenOutput>
+      <DependentUpon>MainDB.edmx</DependentUpon>
+      <LastGenOutput>MainDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

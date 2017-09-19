@@ -21,7 +21,7 @@ namespace FinancesPersonnelles
             BindDGView(db.Groups.ToList());
         }
 
-        private bool Save(string type, string desc)
+        private bool Save(int type, string desc)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace FinancesPersonnelles
             }
         }
 
-        private bool Update(int Id, string NewType, string NewDesc)
+        private bool Update(int Id, int NewType, string NewDesc)
         {
             try
             {
@@ -109,23 +109,37 @@ namespace FinancesPersonnelles
 
         private void groupInsertionInsertButton_Click(object sender, EventArgs e)
         {
-            if (Save(groupInsertionComboBox.SelectedItem.ToString(), groupInsertionRichTextBox.Text.ToString()))
+            if (groupInsertionComboBox.SelectedItem != null)
             {
-                groupInsertionComboBox.SelectedItem = null;
-                groupInsertionRichTextBox.Text = "";
+                if (Save(int.Parse(groupInsertionComboBox.SelectedItem.ToString()), groupInsertionRichTextBox.Text.ToString()))
+                {
+                    groupInsertionComboBox.SelectedItem = null;
+                    groupInsertionRichTextBox.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show("One or more fields are empty. Review and complete the form");
             }
 
         }
 
         private void groupInsertionUpdateButton_Click(object sender, EventArgs e)
         {
-            int Id = int.Parse(groupMovementSetupGridView.SelectedRows[0].Cells[0].Value.ToString());
-            if (Update(Id, groupInsertionComboBox.SelectedItem.ToString(), groupInsertionRichTextBox.Text.ToString()))
+            if (groupInsertionComboBox.SelectedItem != null)
             {
-                groupInsertionComboBox.SelectedItem = null;
-                groupInsertionRichTextBox.Text = "";
-                groupInsertionUpdateButton.Enabled = false;
-                groupExclusionButton.Enabled = false;
+                int Id = int.Parse(groupMovementSetupGridView.SelectedRows[0].Cells[0].Value.ToString());
+                if (Update(Id, int.Parse(groupInsertionComboBox.SelectedItem.ToString()), groupInsertionRichTextBox.Text.ToString()))
+                {
+                    groupInsertionComboBox.SelectedItem = null;
+                    groupInsertionRichTextBox.Text = "";
+                    groupInsertionUpdateButton.Enabled = false;
+                    groupExclusionButton.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("One or more fields are empty. Review and complete the form");
             }
         }
 
@@ -136,10 +150,14 @@ namespace FinancesPersonnelles
 
         private void groupMovementSetupGridView_MouseClick(object sender, MouseEventArgs e)
         {
-            groupInsertionUpdateButton.Enabled = true;
-            groupExclusionButton.Enabled = true;
-            groupInsertionComboBox.Text = groupMovementSetupGridView.SelectedRows[0].Cells[1].Value.ToString();
-            groupInsertionRichTextBox.Text = groupMovementSetupGridView.SelectedRows[0].Cells[2].Value.ToString();
+            if (groupMovementSetupGridView.Rows.Count != 0)
+            {
+                groupInsertionUpdateButton.Enabled = true;
+                groupExclusionButton.Enabled = true;
+                groupInsertionComboBox.Text = groupMovementSetupGridView.SelectedRows[0].Cells[1].Value.ToString();
+                groupInsertionRichTextBox.Text = groupMovementSetupGridView.SelectedRows[0].Cells[2].Value.ToString();
+            }
+
         }
 
         private void groupExclusionButton_Click(object sender, EventArgs e)
