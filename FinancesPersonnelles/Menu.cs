@@ -1,4 +1,5 @@
 ﻿using FinancesPersonnelles.Accounts;
+using FinancesPersonnelles.BudgetSetup;
 using FinancesPersonnelles.Movements;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,16 @@ namespace FinancesPersonnelles
             fm.Show();
         }
 
+        private void Menu_Leave(object sender, EventArgs e)
+        {
+            Login fm = new Login();
+            fm.Show();
+        }
 
+        private void BudgetlinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            BudgetSetups fm = new BudgetSetups();
+            fm.Show();
+        }
     }
 }

@@ -90,6 +90,12 @@
     <Compile Include="Budget.cs">
       <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="BudgetSetup\BudgetSetups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BudgetSetup\BudgetSetups.Designer.cs">
+      <DependentUpon>BudgetSetups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Group.cs">
       <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
@@ -164,6 +170,9 @@
     <EmbeddedResource Include="Accounts\AccountsSetup.resx">
       <DependentUpon>AccountsSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BudgetSetup\BudgetSetups.resx">
+      <DependentUpon>BudgetSetups.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Groups\GroupSetup.resx">
       <DependentUpon>GroupSetup.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,9 +238,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Budget\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

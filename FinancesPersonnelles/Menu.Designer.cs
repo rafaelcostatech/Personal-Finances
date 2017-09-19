@@ -33,6 +33,7 @@
             this.opMenuBtn = new System.Windows.Forms.LinkLabel();
             this.groupsMenuBtn = new System.Windows.Forms.LinkLabel();
             this.accountsMenuBtn = new System.Windows.Forms.LinkLabel();
+            this.BudgetlinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // setupBtn
@@ -45,7 +46,7 @@
             this.setupBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.setupBtn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.setupBtn.LinkColor = System.Drawing.Color.Yellow;
-            this.setupBtn.Location = new System.Drawing.Point(50, 50);
+            this.setupBtn.Location = new System.Drawing.Point(50, 39);
             this.setupBtn.Name = "setupBtn";
             this.setupBtn.Size = new System.Drawing.Size(200, 50);
             this.setupBtn.TabIndex = 0;
@@ -64,7 +65,7 @@
             this.reportsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportsBtn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.reportsBtn.LinkColor = System.Drawing.Color.Yellow;
-            this.reportsBtn.Location = new System.Drawing.Point(530, 50);
+            this.reportsBtn.Location = new System.Drawing.Point(530, 39);
             this.reportsBtn.Name = "reportsBtn";
             this.reportsBtn.Size = new System.Drawing.Size(200, 50);
             this.reportsBtn.TabIndex = 2;
@@ -83,7 +84,7 @@
             this.opMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opMenuBtn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.opMenuBtn.LinkColor = System.Drawing.Color.Yellow;
-            this.opMenuBtn.Location = new System.Drawing.Point(292, 438);
+            this.opMenuBtn.Location = new System.Drawing.Point(572, 176);
             this.opMenuBtn.Name = "opMenuBtn";
             this.opMenuBtn.Size = new System.Drawing.Size(200, 100);
             this.opMenuBtn.TabIndex = 14;
@@ -102,7 +103,7 @@
             this.groupsMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupsMenuBtn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.groupsMenuBtn.LinkColor = System.Drawing.Color.Yellow;
-            this.groupsMenuBtn.Location = new System.Drawing.Point(292, 288);
+            this.groupsMenuBtn.Location = new System.Drawing.Point(290, 176);
             this.groupsMenuBtn.Name = "groupsMenuBtn";
             this.groupsMenuBtn.Size = new System.Drawing.Size(200, 100);
             this.groupsMenuBtn.TabIndex = 13;
@@ -121,7 +122,7 @@
             this.accountsMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accountsMenuBtn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.accountsMenuBtn.LinkColor = System.Drawing.Color.Yellow;
-            this.accountsMenuBtn.Location = new System.Drawing.Point(292, 138);
+            this.accountsMenuBtn.Location = new System.Drawing.Point(12, 176);
             this.accountsMenuBtn.Name = "accountsMenuBtn";
             this.accountsMenuBtn.Size = new System.Drawing.Size(200, 100);
             this.accountsMenuBtn.TabIndex = 12;
@@ -130,12 +131,32 @@
             this.accountsMenuBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.accountsMenuBtn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.accountsMenuBtn_LinkClicked);
             // 
+            // BudgetlinkLabel
+            // 
+            this.BudgetlinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BudgetlinkLabel.BackColor = System.Drawing.Color.Black;
+            this.BudgetlinkLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BudgetlinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BudgetlinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.BudgetlinkLabel.LinkColor = System.Drawing.Color.Yellow;
+            this.BudgetlinkLabel.Location = new System.Drawing.Point(290, 354);
+            this.BudgetlinkLabel.Name = "BudgetlinkLabel";
+            this.BudgetlinkLabel.Size = new System.Drawing.Size(200, 100);
+            this.BudgetlinkLabel.TabIndex = 15;
+            this.BudgetlinkLabel.TabStop = true;
+            this.BudgetlinkLabel.Text = "Budget Setup";
+            this.BudgetlinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BudgetlinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BudgetlinkLabel_LinkClicked);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.BudgetlinkLabel);
             this.Controls.Add(this.opMenuBtn);
             this.Controls.Add(this.groupsMenuBtn);
             this.Controls.Add(this.accountsMenuBtn);
@@ -146,6 +167,7 @@
             this.Name = "Menu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
+            this.Leave += new System.EventHandler(this.Menu_Leave);
             this.ResumeLayout(false);
 
         }
@@ -157,5 +179,6 @@
         private System.Windows.Forms.LinkLabel opMenuBtn;
         private System.Windows.Forms.LinkLabel groupsMenuBtn;
         private System.Windows.Forms.LinkLabel accountsMenuBtn;
+        private System.Windows.Forms.LinkLabel BudgetlinkLabel;
     }
 }

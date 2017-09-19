@@ -109,7 +109,7 @@
             this.movementsSetupUpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.movementsSetupUpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.movementsSetupUpdateButton.ForeColor = System.Drawing.Color.Blue;
-            this.movementsSetupUpdateButton.Location = new System.Drawing.Point(331, 497);
+            this.movementsSetupUpdateButton.Location = new System.Drawing.Point(327, 497);
             this.movementsSetupUpdateButton.Name = "movementsSetupUpdateButton";
             this.movementsSetupUpdateButton.Size = new System.Drawing.Size(139, 40);
             this.movementsSetupUpdateButton.TabIndex = 69;
